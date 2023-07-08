@@ -79,7 +79,8 @@ body {
 }
 
 .numpad>div:hover {
-    background-color: #8a7f92;
+    background-color: #ff4181;
+    color: #353535;
 }
 
 .numpad>div>sup {
