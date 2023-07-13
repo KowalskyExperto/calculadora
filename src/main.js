@@ -70,24 +70,27 @@ buttonDot.addEventListener(
 
 buttonPercent.addEventListener(
     "click"
-    ,() => addTextToSecondLine("%")
+    ,() => addTextToFirstLine("%")
 );
 
 buttonCE.addEventListener(
     "click"
-    ,() => addTextToFirstLine("CE")
+    ,() => clearSecondLine()
 );
 
+const clearSecondLine = () => {
+    document.getElementById("second-line").textContent = "0";
+};
+
 const addTextToSecondLine = function (word) {
-    const secondLine = document.getElementById("second-line");
-    var oldText = secondLine.textContent;
-    if(word === '.' && oldText.includes('.'))
+    const oldText = document.getElementById("second-line").textContent;
+    if(word === '.' && oldText.includes('.')){
         word = '';
-    secondLine.textContent = oldText + word;
+    };
+    document.getElementById("second-line").textContent = oldText + word;
 };
 
 const addTextToFirstLine = function (word) {
-    const firstLine = document.getElementById("first-line");
-    const oldText = firstLine.textContent;
-    firstLine.textContent = oldText + word;
+    document.getElementById("first-line").textContent = document.getElementById("second-line").textContent + " " + word;
+    clearSecondLine();
 };
