@@ -11,7 +11,7 @@ const button8 = document.getElementById("button-8");
 const button9 = document.getElementById("button-9");
 const button0 = document.getElementById("button-0");
 const buttonDot = document.getElementById("button-dot");
-
+const buttonDel = document.getElementById("button-del");
 
 button1.addEventListener(
     "click"
@@ -78,19 +78,40 @@ buttonCE.addEventListener(
     ,() => clearSecondLine()
 );
 
+buttonDel.addEventListener(
+    "click"
+    ,() => delTextSecondLine()
+)
+
 const clearSecondLine = () => {
     document.getElementById("second-line").textContent = "0";
 };
 
 const addTextToSecondLine = function (word) {
-    const oldText = document.getElementById("second-line").textContent;
+    const secondLine = document.getElementById("second-line")
+    var oldText = secondLine.textContent;
     if(word === '.' && oldText.includes('.')){
         word = '';
+    }else if(word === '0' && oldText === '0'){
+        word = "";
+    }else if(word !== '0' && oldText === '0'){
+        if(word !== '.'){
+            oldText = "";
+        };
     };
-    document.getElementById("second-line").textContent = oldText + word;
+    secondLine.textContent = oldText + word;
 };
 
 const addTextToFirstLine = function (word) {
     document.getElementById("first-line").textContent = document.getElementById("second-line").textContent + " " + word;
     clearSecondLine();
 };
+
+const delTextSecondLine = () => {
+    secondLine = document.getElementById("second-line");
+    if(secondLine.textContent.length === 1){
+        secondLine.textContent = '0';
+    } else {
+        secondLine.textContent = secondLine.textContent.slice(0,-1);
+    }
+}
